@@ -9,29 +9,37 @@ const services: Service[] = [
     icon: SparklesIcon,
     title: 'Cosmetic Dentistry',
     description: 'Transform your smile with our range of aesthetic treatments, including veneers, bonding, and smile makeovers.',
+    image: 'https://images.unsplash.com/photo-1600170052733-29a8a7c1c7a0?q=80&w=800&auto=format&fit=crop',
   },
   {
     icon: ToothIcon,
     title: 'Root Canal Therapy',
     description: 'Relieve pain and save your natural teeth with our gentle and effective root canal procedures.',
+    image: 'https://images.unsplash.com/photo-1588776239933-3cf38b55d38c?q=80&w=800&auto=format&fit=crop',
   },
   {
     icon: AcademicCapIcon,
     title: 'Teeth Whitening',
     description: 'Achieve a brilliantly white smile with our professional in-office and take-home whitening systems.',
+    image: 'https://images.unsplash.com/photo-1619890184209-3a3f52478f73?q=80&w=800&auto=format&fit=crop',
   },
 ];
 
 const ServiceCard: React.FC<{ service: Service, animationDelay: string }> = ({ service, animationDelay }) => (
   <GlassCard 
-    className="p-8 text-center flex flex-col items-center group"
+    className="p-0 text-center flex flex-col group h-full"
     animationDelay={animationDelay}
   >
-    <div className="bg-emerald-100 dark:bg-emerald-900/50 p-4 rounded-full mb-4 transition-all duration-300 group-hover:scale-110">
-      <service.icon className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+    <div className="h-48 overflow-hidden rounded-t-2xl">
+      <img src={service.image} alt={service.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
     </div>
-    <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">{service.title}</h3>
-    <p className="text-gray-600 dark:text-gray-400 flex-grow">{service.description}</p>
+    <div className="relative p-6 pt-16 flex flex-col items-center flex-grow">
+      <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-emerald-100 dark:bg-emerald-900/50 p-4 rounded-full border-4 border-slate-50 dark:border-gray-900 transition-transform duration-300 group-hover:scale-105">
+        <service.icon className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+      </div>
+      <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-white">{service.title}</h3>
+      <p className="text-gray-600 dark:text-gray-400">{service.description}</p>
+    </div>
   </GlassCard>
 );
 

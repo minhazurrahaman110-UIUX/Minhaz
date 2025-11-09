@@ -1,8 +1,9 @@
 import React from 'react';
 
 export const PearlSmileLogoIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-    <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zM9.5 8C8.672 8 8 8.672 8 9.5v7c0 .828.672 1.5 1.5 1.5h.5c.828 0 1.5-.672 1.5-1.5v-7C11.5 8.672 10.828 8 10 8h-.5zm5 0c-.828 0-1.5.672-1.5 1.5v7c0 .828.672 1.5 1.5 1.5h.5c.828 0 1.5-.672 1.5-1.5v-7c0-.828-.672-1.5-1.5-1.5h-.5z" />
+  <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+    <path d="M7 13c1.5 2.5 6.5 2.5 8 0"/>
   </svg>
 );
 

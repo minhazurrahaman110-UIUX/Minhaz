@@ -14,30 +14,37 @@ const Contact: React.FC = () => {
           </p>
         </div>
         <div className="grid lg:grid-cols-2 gap-8">
-          <GlassCard className="p-8" animationDelay="100ms">
-            <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Contact Information</h3>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <LocationMarkerIcon className="w-6 h-6 text-emerald-500" />
-                <span>123 Dental Ave, Smile City, ST 12345</span>
+          <GlassCard className="p-0 overflow-hidden" animationDelay="100ms">
+            <img 
+              src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800&auto=format&fit=crop" 
+              alt="PearlSmile Clinic Interior"
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-8">
+              <h3 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-white">Contact Information</h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <LocationMarkerIcon className="w-6 h-6 text-emerald-500" />
+                  <span>123 Dental Ave, Smile City, ST 12345</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <PhoneIcon className="w-6 h-6 text-emerald-500" />
+                  <span>(123) 456-7890</span>
+                </div>
+                <div className="flex items-center gap-4">
+                  <MailIcon className="w-6 h-6 text-emerald-500" />
+                  <span>contact@pearlsmile.studio</span>
+                </div>
               </div>
-              <div className="flex items-center gap-4">
-                <PhoneIcon className="w-6 h-6 text-emerald-500" />
-                <span>(123) 456-7890</span>
+              <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-800 dark:text-white">Opening Hours</h3>
+              <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                <span>Monday - Friday</span>
+                <span>9:00 AM - 5:00 PM</span>
               </div>
-              <div className="flex items-center gap-4">
-                <MailIcon className="w-6 h-6 text-emerald-500" />
-                <span>contact@pearlsmile.studio</span>
+              <div className="flex justify-between text-gray-600 dark:text-gray-400">
+                <span>Saturday</span>
+                <span>10:00 AM - 2:00 PM</span>
               </div>
-            </div>
-            <h3 className="text-2xl font-semibold mt-8 mb-4 text-gray-800 dark:text-white">Opening Hours</h3>
-            <div className="flex justify-between text-gray-600 dark:text-gray-400">
-              <span>Monday - Friday</span>
-              <span>9:00 AM - 5:00 PM</span>
-            </div>
-            <div className="flex justify-between text-gray-600 dark:text-gray-400">
-              <span>Saturday</span>
-              <span>10:00 AM - 2:00 PM</span>
             </div>
           </GlassCard>
           <div className="rounded-2xl overflow-hidden shadow-lg h-96 lg:h-full">

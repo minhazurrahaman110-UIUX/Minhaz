@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import type { Dentist, Booking } from '../types';
 import GlassCard from './GlassCard';
 import { CalendarIcon, ClockIcon, UserIcon, BellIcon, DeviceMobileIcon } from './icons/FormIcons';
@@ -6,9 +6,9 @@ import { MailIcon } from './icons/ContactIcons';
 import { CheckCircleIcon } from './icons/AppIcons';
 
 const dentists: Dentist[] = [
-  { id: '1', name: 'Dr. Evelyn Reed' },
-  { id: '2', name: 'Dr. Marcus Chen' },
-  { id: '3', name: 'Dr. Sofia Garcia' },
+  { id: '1', name: 'Dr. Evelyn Reed', avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop' },
+  { id: '2', name: 'Dr. Marcus Chen', avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=200&auto=format&fit=crop' },
+  { id: '3', name: 'Dr. Sofia Garcia', avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop' },
 ];
 
 const timeSlots = ['09:00 AM', '10:00 AM', '11:00 AM', '01:00 PM', '02:00 PM', '03:00 PM'];
@@ -37,6 +37,8 @@ const BookingForm: React.FC = () => {
     { dentistId: '1', date: getTodayString(), time: '01:00 PM', reminderPreferences: { method: 'email', contact: 'test@example.com', timing: '24h' } },
     { dentistId: '3', date: getTodayString(), time: '02:00 PM' },
   ]);
+
+  const currentlySelectedDentist = useMemo(() => dentists.find(d => d.id === selectedDentist), [selectedDentist]);
 
   const formatDate = (date: Date) => date.toISOString().split('T')[0];
 
@@ -172,21 +174,28 @@ const BookingForm: React.FC = () => {
                   <UserIcon className="w-5 h-5" />
                   Choose Your Dentist
                 </label>
-                <select
-                  value={selectedDentist}
-                  onChange={(e) => {
-                    setSelectedDentist(e.target.value);
-                    setSelectedTime(null);
-                    setBookingStatus(null);
-                  }}
-                  className="w-full p-3 bg-white/50 dark:bg-gray-700/50 border border-white/30 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition"
-                >
-                  {dentists.map(dentist => (
-                    <option key={dentist.id} value={dentist.id} className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
-                      {dentist.name}
-                    </option>
-                  ))}
-                </select>
+                <div className="relative">
+                  {currentlySelectedDentist && (
+                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <img src={currentlySelectedDentist.avatar} alt={currentlySelectedDentist.name} className="w-6 h-6 rounded-full" />
+                    </div>
+                  )}
+                  <select
+                    value={selectedDentist}
+                    onChange={(e) => {
+                      setSelectedDentist(e.target.value);
+                      setSelectedTime(null);
+                      setBookingStatus(null);
+                    }}
+                    className="w-full p-3 pl-11 bg-white/50 dark:bg-gray-700/50 border border-white/30 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition appearance-none"
+                  >
+                    {dentists.map(dentist => (
+                      <option key={dentist.id} value={dentist.id} className="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+                        {dentist.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
               <div>
                 <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -324,6 +333,7 @@ const BookingForm: React.FC = () => {
                   {bookings.map((booking, index) => (
                     <li key={index} className="flex justify-between items-center bg-white/20 dark:bg-gray-900/20 p-3 rounded-lg">
                       <div className="flex items-center gap-2">
+                        <img src={dentists.find(d => d.id === booking.dentistId)?.avatar} alt="" className="w-8 h-8 rounded-full"/>
                         <div>
                           <p className="font-semibold text-sm">{dentists.find(d => d.id === booking.dentistId)?.name}</p>
                           <p className="text-xs text-gray-700 dark:text-gray-300">{new Date(booking.date + 'T00:00:00').toDateString()} - {booking.time}</p>

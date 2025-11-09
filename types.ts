@@ -2,11 +2,13 @@ export interface Service {
   icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
+  image: string;
 }
 
 export interface Dentist {
   id: string;
   name: string;
+  avatar: string;
 }
 
 export interface Testimonial {
